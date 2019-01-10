@@ -81,7 +81,7 @@ Note for translators:
 
 {{% def id="DV" name="Domain-validated certificate" %}} A [certificate](#def-leaf) where the applicant has only proven its control over the domain name (and not the identity of the requesting organization). [Let's Encrypt](#def-LE) offers only DV certificates (not [OV](#def-OV) or [EV](#def-EV)): [FAQ](https://letsencrypt.org/docs/faq/) - [Wikipedia](https://en.wikipedia.org/wiki/Domain-validated_certificate) {{% /def %}}
 
-{{% def id="ECDSA" name="Elliptic Curve Digital Signature Algorithm" abbr="ECDSA" abbr_first="1" %}} A variant of the Digital Signature Algorithm (DSA) which uses elliptic curve cryptography.  [Wikipedia](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm). [Let's Encrypt](#def-LE) supports ECDSA for [end-entity or leaf certificates](#def-leaf), but not yet for the entire [chain](#def-chain): https://letsencrypt.org/upcoming-features/ {{% /def %}}
+{{% def id="ECDSA" name="Elliptic Curve Digital Signature Algorithm" abbr="ECDSA" abbr_first="1" %}} A variant of the Digital Signature Algorithm (DSA) which uses elliptic curve cryptography. [Let's Encrypt](#def-LE) supports ECDSA for [end-entity or leaf certificates](#def-leaf), but not yet for the entire [chain](#def-chain): https://letsencrypt.org/upcoming-features/. [Wikipedia](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) {{% /def %}}
 
 {{% def id="Ed25519" name="Ed25519" %}} A specific type of [EdDSA](#def-EdDSA), along with Ed448. {{% /def %}}
 
@@ -91,7 +91,7 @@ Note for translators:
 
 {{% def id="EV" name="Extended Validation" abbr="EV" %}} A type of certificate validation for which the [CA](#def-CA) has verified the legal entity controlling the website. They contain information about that entity. Controls from the [CA](#def-CA) are more strict than for [OV](#def-OV) certificates. [Let's Encrypt](#def-LE) doesn't offer EV certificates. [Wikipedia](https://en.wikipedia.org/wiki/Extended_Validation_Certificate) {{% /def %}}
 
-{{% def id="FQDN" name="Fully qualified domain name" abbr="FQDN" %}} The complete domain name of a website. For example, `www.example.com` is an *FQDN*. {{% /def %}}
+{{% def id="FQDN" name="Fully qualified domain name" abbr="FQDN" %}} The complete domain name of a website. For example, `www.example.com` is an *FQDN*. [Wikipedia](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) {{% /def %}}
 
 {{% def id="IdenTrust" name="IdenTrust" %}} A [Certificate Authority](#def-CA). IdenTrust has [cross-signed](#def-cross-signing) [Let's Encrypt](#def-LE) [intermediate certificates](#def-intermediate): [https://letsencrypt.org/certificates/](https://letsencrypt.org/certificates/). [Wikipedia](https://en.wikipedia.org/wiki/IdenTrust) {{% /def %}}
 
@@ -117,7 +117,7 @@ Note for translators:
 
 {{% def id="OCSP-must-staple" name="OCSP Must-Staple" %}} A [certificate](#def-leaf) extension, informing the [browser](#def-web-browser) that the [web server](#def-web-server) with that certificate must use [OCSP stapling](#def-OCSP-staping). It's used to require that an up-to-date [revocation](#def-revocation) status of the [certificate](#def-leaf) is confirmed by the web server on every connection, making revocation more reliable. [Let's Encrypt](#def-LE) can issue certificates with the OCSP Must-Staple [extension](#def-extension) upon request. [Mozilla Security Blog](https://blog.mozilla.org/security/2015/11/23/improving-revocation-ocsp-must-staple-and-short-lived-certificates/) [RFC 7633](https://tools.ietf.org/html/rfc7633) {{% /def %}}
 
-{{% def id="OCSP-stapling" name="OCSP stapling" %}} A way for a [web server](#def-web-server) to send a [browser](#def-web-browser) an [OCSP](#def-OCSP) response signed by the [Certificate Authority](#def-CA), so the browser itself doesn’t need to make a secondary OCSP request to the CA, improving speed and privacy. Also known as TLS Certificate Status Request extension. [Wikipedia](https://en.wikipedia.org/wiki/OCSP_stapling) [Cloudflare](https://blog.cloudflare.com/high-reliability-ocsp-stapling/) {{% /def %}}
+{{% def id="OCSP-stapling" name="OCSP stapling" %}} A way for a [web server](#def-web-server) to send a [browser](#def-web-browser) an [OCSP](#def-OCSP) response signed by the [Certificate Authority](#def-CA), so the browser itself doesn’t need to make a secondary OCSP request to the CA, improving speed and privacy. Also known as TLS Certificate Status Request extension. [Wikipedia](https://en.wikipedia.org/wiki/OCSP_stapling) - [Cloudflare](https://blog.cloudflare.com/high-reliability-ocsp-stapling/) {{% /def %}}
 
 {{% def id="OID" name="Object identifier" abbr="OID" %}} OIDs are unique numeric identifiers standardized by the International Telecommunications Union (ITU) and ISO/IEC. OIDs are used within certificates to define extensions, fields, or policy assertions. Internet standards and [Certificate Policy](#def-CP) and [Certification Practice Statement](#def-CPS) documents define OID usage. [Wikipedia](https://en.wikipedia.org/wiki/Object_identifier) {{% /def %}}
 

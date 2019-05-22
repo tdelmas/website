@@ -3,11 +3,14 @@ title: À propos de Let's Encrypt
 linkTitle: Let's Encrypt
 slug: about
 top_graphic: 1
+lastmod: 2019-01-28
 menu:
   main:
     weight: 10
     parent: about
 ---
+
+{{< lastmod >}}
 
 Let's Encrypt est une autorité de certification (AC ou CA pour Certificate Authority en anglais) gratuite, automatisée et ouverte, exploitée pour le bénéfice du public. C'est un service fourni par [Internet Security Research Group (ISRG)](https://www.abetterinternet.org/).
 

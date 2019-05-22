@@ -3,11 +3,14 @@ title: About Let's Encrypt
 linkTitle: Let's Encrypt
 slug: about
 top_graphic: 1
+lastmod: 2019-01-28
 menu:
   main:
     weight: 10
     parent: about
 ---
+
+{{< lastmod >}}
 
 Let's Encrypt is a free, automated, and open certificate authority (CA), run for the public's benefit. It is a service provided by the [Internet Security Research Group (ISRG)](https://www.abetterinternet.org/).
 

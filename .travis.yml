@@ -7,6 +7,6 @@ before_install:
   - npm install eslint
 
 install:
-  - find static/js -name "*.js" -not -name "*min.js" | xargs eslint
+  - find static/js -name "*.js" -not -name "*min.js" | xargs ./node_modules/.bin/eslint
   - hugo env
   - hugo

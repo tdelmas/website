@@ -26,7 +26,7 @@ do seu registrador de domínios. Por exemplo, no nome `exemplo.com`,
 o domínio registrado é `exemplo.com`. Em `novo.blog.exemplo.com`,
 o domínio registrado é `exemplo.com`. Usamos a 
 [Lista Pública de Sufixos](https://publicsuffix.org) para calcular o domínio
-registrado.   
+registrado.
 
 Se você tem muitos subdomínios, talvez queira combinar todos eles em um único
 certificado, dentro do limite de 100 <a name="names-per-certificate"></a>**Nomes por Certificado**. Combinado com o
@@ -79,7 +79,7 @@ Por favor use nosso [ambiente de testes]({{< ref "/docs/staging-environment.md" 
 desenvolvendo um cliente ACME.
 
 Para usuários da API ACME v2 você pode criar um máximo de 300 <a
-name="new-orders"></a>**Novas Ordens** por conta por 3 horas. 
+name="new-orders"></a>**Novas Ordens** por conta por 3 horas.
 
 # <a name="overrides"></a>Exceções
 
@@ -89,7 +89,7 @@ então se você emitir 25 certificados na segunda-feira e mais 25 na sexta,
 você poderá emitir novamente a partir de segunda-feira. Você pode obter uma lista de certificados
 emitidos para os seus domínios registrados [através de uma busca em crt.sh](https://crt.sh), que 
 usa os registros públicos de 
-[Transparência de Certificados](https://www.certificate-transparency.org). 
+[Transparência de Certificados](https://www.certificate-transparency.org).
 
 Revogar certificados não zera os limites de requisições, porque os recursos envolvidos 
 na emissão de certificados já foram consumidos.

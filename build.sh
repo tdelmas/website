@@ -11,8 +11,6 @@ set -eu
 if [ -d "node_modules/.bin" ]; then
     export PATH="${PWD}/node_modules/.bin:${PATH}"
 fi
-echo "Processing scss..."
-node-sass --output-style compressed src/css/main.scss static/css/main.min.css
 echo "Minifying js..."
 uglifyjs static/js/main.js -o static/js/main.min.js  -c -m
 echo "Checking js..."

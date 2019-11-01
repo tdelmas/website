@@ -316,12 +316,7 @@ function doPlot() {
     Plotly.plot(dom, traces, layout);
   }
 
-  var path;
-  if ( location.hostname === "letsencrypt.org" ) {
-    path = "https://d4twhgtvn0ff5.cloudfront.net/";
-  } else {
-    path = "/js/"; // in dev, will use old data.
-  }
+  var path = "https://d4twhgtvn0ff5.cloudfront.net/";
 
   fetch(path+"cert-timeline.tsv")
   .then(response => {

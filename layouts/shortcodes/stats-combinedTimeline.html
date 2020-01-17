@@ -1,8 +1,8 @@
 <div class="dashboard">
   <div class="figure">
-    <h1>{{ .Get "name" }}</h1>
+    <h1>{{ i18n "graph_growth_timeline" }}</h1>
 
-    <div id="combinedTimeline" title="{{ .Get "title" }}" class="statsgraph"></div>
+    <div id="combinedTimeline" title="{{ i18n "graph_issued_timeline" }}" class="statsgraph"></div>
     
     <p><a href="{{ relref . "/stats" }}">{{ ref . "/stats" }}</a></p>
   </div>

@@ -107,6 +107,15 @@ other = "Active Count"
 [graph_issued_per_day]
 other = "Issued Per Day"
 
+[graph_le_issued_per_day]
+other = "Let's Encrypt Certificates Issued Per Day"
+
+[graph_growth]
+other = "Let's Encrypt Growth"
+
+[graph_percentage_firefox]
+other = "Percentage of Web Pages Loaded by Firefox Using HTTPS"
+
 [graph_all_users]
 other = "All users"
 

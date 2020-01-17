@@ -1,5 +1,9 @@
-<div class="figure">
-  <h1>{{ .Get "name" }}</h1>
+<div class="dashboard">
+  <div class="figure">
+    <h1>{{ .Get "name" }}</h1>
 
-  <div id="combinedTimeline" title="{{ .Get "title" }}" class="statsgraph"></div>
+    <div id="combinedTimeline" title="{{ .Get "title" }}" class="statsgraph"></div>
+    
+    <p><a href="{{ relref . "/stats" }}">{{ ref . "/stats" }}</a></p>
+  </div>
 </div>

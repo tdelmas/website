@@ -1,9 +1,5 @@
-<div class="dashboard">
-  <div class="figure">
-    <h2><a name="growth" href="#growth">{{ .Get "name" }}</a></h2>
-    
-    <div id="activeUsage" title="{{ .Get "title" }}" class="statsgraph"></div>
-  </div>
+<div class="figure">
+  <h2><a name="growth" href="#growth">{{ .Get "name" }}</a></h2>
   
-  <p><a href="{{ relref . "/stats" }}">{{ ref . "/stats" }}</a></p>
+  <div id="activeUsage" title="{{ .Get "title" }}" class="statsgraph"></div>
 </div>

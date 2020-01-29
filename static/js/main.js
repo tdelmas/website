@@ -154,4 +154,14 @@ document.addEventListener("keyup", function(e) {
   }
 });
 
+if ( location.domain != "letsencrypt.org" ) {
+  var main_content = document.getElementById("main-content");
+  if (main_content) {
+    var meta = document.querySelector("meta[name=description]");
+    var debug_div = document.createElement("div");
+    debug_div.innerHTML = "[DEBUG] Description="+meta.content;
+    main_content.append(debug_div);
+  }  
+}
+
 })(this, this.document);

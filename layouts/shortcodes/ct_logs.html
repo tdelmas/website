@@ -1,11 +1,5 @@
-{{ $category := .Get "data" }}
-{{ if eq $category "production" }}
-    <h3>{{ i18n "certificate_transparency_role_production"}}</h3>
-{{ else }}
-    <h3>{{ i18n "certificate_transparency_role_testing"}}</h3>
-{{ end }}
+{{ $category := .Get 0 }}
 <ul>
-    {{ .Inner }}
     <li style="list-style-type:none;">
         <ul>
         {{ range where $.Site.Data.transparency.transparencyLogs "role" $category }}

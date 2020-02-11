@@ -1,26 +1,20 @@
-{{ $inner := .Inner }}
-{{ $data := .Get "data" }}
-{{ range $.Site.Data.transparency.categories }}
-    {{ $category := . }}
-    {{ if (eq $category $data "$category") }}
-        {{ if eq $data "production" }}
-            <h3>{{ i18n "certificate_transparency_role_production"}}</h3>
-        {{ else }}
-            <h3>{{ i18n "certificate_transparency_role_testing"}}</h3>
-        {{ end }}
-        <ul>
-        {{ $inner }}
-        <ul>
-        {{ range $.Site.Data.transparency.transparencyLogs }}
-            {{ if and .role (eq $category .role) }}
-            <li>
-            <strong>{{ i18n "certificate_transparency_name" }}{{ .Site.Params.beforeColon | safeHTML }}: {{ .log | humanize }} {{ .shard }}</strong><br>
-            {{ i18n "certificate_transparency_uri" }}{{ .Site.Params.beforeColon | safeHTML }}: https://{{ .log }}.ct.letsencrypt.org/{{ .shard }}<br>
-            {{ i18n "certificate_transparency_public_key" }}{{ .Site.Params.beforeColon | safeHTML }}: <code>{{ .publicKey }}</code>
-            </li>
-            {{ end }}
-        {{ end }}
-    </ul>
-    </ul>
-    {{ end }}
+{{ $category := .Get "data" }}
+{{ if eq $category "production" }}
+    <h3>{{ i18n "certificate_transparency_role_production"}}</h3>
+{{ else }}
+    <h3>{{ i18n "certificate_transparency_role_testing"}}</h3>
 {{ end }}
+<ul>
+    {{ .Inner }}
+    <li style="list-style-type:none;">
+        <ul>
+        {{ range where $.Site.Data.transparency.transparencyLogs "role" $category }}
+            <li>
+                <strong>{{ i18n "certificate_transparency_name" }}{{ .Site.Params.beforeColon | safeHTML }}: {{ .log | humanize }} {{ .shard }}</strong><br>
+                {{ i18n "certificate_transparency_uri" }}{{ .Site.Params.beforeColon | safeHTML }}: https://{{ .log }}.ct.letsencrypt.org/{{ .shard }}<br>
+                {{ i18n "certificate_transparency_public_key" }}{{ .Site.Params.beforeColon | safeHTML }}: <code>{{ .publicKey }}</code>
+            </li>
+        {{ end }}
+        </ul>
+    </li>
+</ul>

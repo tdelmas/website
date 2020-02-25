@@ -43,7 +43,7 @@
         {{ errorf "Missing markup for lang %q in layouts/partials/langs.html" .Page.Language.Lang }}
       {{ end }}
       
-      <p data-langswitch="{{ .Language.Params.languageCode }}" style="display:none">
+      <p data-langswitch="{{ .Language.Params.languageCode }}" class="hidden">
         <a lang="{{ .Language.Params.languageCode }}" hreflang="{{ .Language.Params.languageCode }}" href="{{ .RelPermalink }}">
           {{ $scratch.Get "view_in_xxx" }}
         </a>

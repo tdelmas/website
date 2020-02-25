@@ -14,14 +14,14 @@
   "alt-require": true,
   "doctype-html5": true,
   "id-class-value": false,
-  "style-disabled": false,
+  "style-disabled": true,
   "space-tab-mixed-disabled": false,
   "id-class-ad-disabled": true,
   "href-abs-or-rel": false,
   "attr-unsafe-chars": true,
   "head-script-disabled": false,
-  "doctype-first":false,
+  "doctype-first":true,
 
-  "inline-style-disabled": false,
-  "inline-script-disabled": false
+  "inline-style-disabled": true,
+  "inline-script-disabled": true
 }

@@ -283,3 +283,66 @@ pre {
 .home_sponsors img {
     background-color: #fff;
 }
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.donate-word {
+    font-size: 120%;
+    font-weight: bold;
+    color: #2B3C69;
+}
+
+.hidden {
+    display: none;
+}
+
+.hero-image-1 {
+    background-image: url('/images/1.jpg');
+}
+
+.hero-image-2 {
+    background-image: url('/images/2.jpg');
+}
+
+.hero-image-3 {
+    background-image: url('/images/3.jpg');
+}
+
+.hero-image-4 {
+    background-image: url('/images/4.jpg');
+}
+
+.hero-image-5 {
+    background-image: url('/images/5.jpg');
+}
+
+.hero-image-6 {
+    background-image: url('/images/6.jpg');
+}
+
+.table-border {
+    border: 1px;
+}
+
+.grey {
+    color: grey;
+}
+
+.orange {
+    color: orange;
+}
+
+.valign-top {
+    vertical-align: top;
+}
+
+.padding-left-15 {
+    padding-left: 15px;
+}
+
+iframe.donorbox {
+    max-width:423px;
+    min-width:310px
+}

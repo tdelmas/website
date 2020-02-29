@@ -1,5 +1,5 @@
 ---
-title: À propos de Let's Encrypt
+title: About Let's Encrypt
 linkTitle: Let's Encrypt
 slug: about
 top_graphic: 1
@@ -10,24 +10,19 @@ menu:
     parent: about
 ---
 
-Let's Encrypt est une autorité de certification (AC ou CA pour Certificate Authority en anglais) gratuite, automatisée et ouverte, exploitée pour le bénéfice du public. C'est un service fourni par [Internet Security Research Group (ISRG)](https://www.abetterinternet.org/).
+Let's Encrypt is a free, automated, and open certificate authority (CA), run for the public's benefit. It is a service provided by the [Internet Security Research Group (ISRG)](https://www.abetterinternet.org/).
 
-Nous donnons aux gens les certificats numériques dont ils ont besoin pour activer HTTPS (SSL/TLS) pour les sites Web, gratuitement, de la manière la plus intuitive possible. Nous faisons cela parce que nous voulons créer un Web plus sûr et respectueux de la vie privée.
+We give people the digital certificates they need in order to enable HTTPS (SSL/TLS) for websites, for free, in the most user-friendly way we can. We do this because we want to create a more secure and privacy-respecting Web.
 
-Pour en savoir plus sur notre dernière année, téléchargez notre rapport annuel ([Bureau](https://abetterinternet.org/documents/2019-ISRG-Annual-Report-Desktop.pdf), [Mobile](https://abetterinternet.org/documents/2019-ISRG-Annual-Report-Mobile.pdf)).
+You can read about our most recent year in review by downloading our annual report ([Desktop](https://abetterinternet.org/documents/2019-ISRG-Annual-Report-Desktop.pdf), [Mobile](https://abetterinternet.org/documents/2019-ISRG-Annual-Report-Mobile.pdf)).
 
-Les principes clés de Let's Encrypt sont les suivants :
+The key principles behind Let's Encrypt are:
 
-* <strong> Gratuit : </strong> Toute personne possédant un nom de domaine peut utiliser Let's Encrypt pour obtenir un certificat reconnu, à coût nul.
+* <strong>Free:</strong> Anyone who owns a domain name can use Let's Encrypt to obtain a trusted certificate at zero cost.
+* <strong>Automatic:</strong> Software running on a web server can interact with Let's Encrypt to painlessly obtain a certificate, securely configure it for use, and automatically take care of renewal.
+* <strong>Secure:</strong> Let's Encrypt will serve as a platform for advancing TLS security best practices, both on the CA side and by helping site operators properly secure their servers.
+* <strong>Transparent:</strong> All certificates issued or revoked will be publicly recorded and available for anyone to inspect.
+* <strong>Open:</strong> The automatic issuance and renewal protocol will be published as an open standard that others can adopt.
+* <strong>Cooperative:</strong> Much like the underlying Internet protocols themselves, Let's Encrypt is a joint effort to benefit the community, beyond the control of any one organization.
 
-* <strong>Automatique :</strong> Un logiciel s'exécutant sur un serveur Web peut interagir avec Let's Encrypt pour obtenir sans difficulté un certificat, le configurer de manière sécurisée pour l'utilisation et prendre automatiquement en charge le renouvellement.
-
-* <strong>Sécurisé :</strong> Let's Encrypt servira de plate-forme pour faire progresser les meilleures pratiques de sécurité TLS, tant du côté de l'autorité de certification que pour aider les responsables de site Web à sécuriser correctement leurs serveurs.
-
-* <strong>Transparent :</strong> Tous les certificats délivrés ou révoqués seront enregistrés publiquement et disponibles pour inspection par quiconque.
-
-* <strong>Ouvert :</strong> Le protocole d'émission et de renouvellement automatique sera publié en tant que norme ouverte que d'autres peuvent adopter.
-
-* <strong>Coopératif :</strong> Tout comme les protocoles Internet sous-jacents eux-mêmes, Let's Encrypt est un effort conjoint au profit de la communauté, au-delà du contrôle d'un organisme en particulier.
-
-Nous avons une page avec des informations plus détaillées sur {{<link "comment fonctionne l'AC Let's Encrypt" "/how-it-works" >}}.
+We have a page with more detailed information about {{<link "how the Let's Encrypt CA works" ">}}.

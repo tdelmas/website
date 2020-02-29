@@ -1,63 +1,66 @@
 ---
-title: Comment ça marche
-linkTitle: Comment Let's Encrypt fonctionne
+title: How It Works
+linkTitle: How Let's Encrypt Works
 slug: how-it-works
 top_graphic: 3
-lastmod: 2019-09-09
+lastmod: 2019-10-18
 ---
 
 {{< lastmod >}}
 
-L'objectif de l'Autorité de Certification (AC ou CA pour Certificate Authority en anglais) Let's&nbsp;Encrypt et du [protocole ACME](https://ietf-wg-acme.github.io/acme/) est de permettre la mise en place d'un serveur HTTPS et l'obtention automatique d'un certificat reconnu comme  de confiance par les navigateurs, sans intervention humaine. Ceci est accompli en exécutant un agent de gestion de certificats sur le serveur Web.
+The objective of Let's&nbsp;Encrypt and the [ACME protocol](https://tools.ietf.org/html/rfc8555) is to make it possible to set up an HTTPS server and have it automatically obtain a browser-trusted certificate, without any human intervention.  This is accomplished by running a certificate management agent on the web server.
 
-Pour comprendre le fonctionnement, étudions le processus de configuration de `https://example.com/` avec un agent de gestion de certificats prenant en charge la fonction de chiffrement Let's&nbsp;Encrypt.
+To understand how the technology works, let's walk through the process of setting up `https://example.com/` with a certificate management agent that supports Let's&nbsp;Encrypt.
 
-Il y a deux étapes à ce processus. Tout d'abord, l'agent prouve à l'autorité de certification que le serveur Web contrôle un domaine. Ensuite, l'agent peut demander, renouveler et révoquer des certificats pour ce domaine.
+There are two steps to this process.  First, the agent proves to the CA that the web server controls a domain.  Then, the agent can request, renew, and revoke certificates for that domain.
 
-## Validation de domaine
+## Domain Validation
 
-Let's&nbsp;Encrypt identifie l'administrateur du serveur par clé publique. La première fois que le logiciel de l'agent interagit avec Let's&nbsp;Encrypt, il génère une nouvelle paire de clés et prouve à Let's&nbsp;Encrypt que le serveur contrôle un ou plusieurs domaines. Ceci est similaire au processus de création d'un compte et d'ajout de domaines à ce compte des autorités de certifications traditionnelles.
+Let's&nbsp;Encrypt identifies the server administrator by public key.  The first time the agent software interacts with Let's&nbsp;Encrypt, it generates a new key pair and proves to the Let's&nbsp;Encrypt CA that the server controls one or more domains.  This is similar to the traditional CA process of creating an account and adding domains to that account.
 
-Pour lancer le processus, l'agent demande à l'AC Let's Encrypt ce qu'elle doit faire pour prouver qu'elle contrôle `example.com`. L'AC Let's Encrypt examinera le nom de domaine demandé et émettra un ou plusieurs ensembles de défis. Ce sont différentes manières que l'agent peut utiliser pour prouver le contrôle du domaine. Par exemple, l'autorité de certification peut donner à l'agent le choix entre:
+To kick off the process, the agent asks the Let's Encrypt CA what it needs to do in order to prove that it controls `example.com`.  The Let's Encrypt CA will look at the domain name being requested and issue one or more sets of challenges.   These are different ways that the agent can prove control of the domain.  For example, the CA might give the agent a choice of either:
 
-* Provisionner un enregistrement DNS sous `example.com`, ou
-* Provisionner une ressource HTTP sous l'URI .well-known sur `http://example.com/`
+* Provisioning a DNS record under `example.com`, or
+* Provisioning an HTTP resource under a well-known URI on `http://example.com/`
 
-En plus des défis, l'AC de chiffrement de Let fournit également un nonce que l'agent doit signer avec sa paire de clés privée pour prouver qu'il contrôle la paire de clés.
+Along with the challenges, the Let's Encrypt CA also provides a nonce that the agent must sign with its private key pair to prove that it controls the key pair.
 
 <div class="howitworks-figure">
-<img alt="Demander des défis pour valider example.com"
+<img alt="Requesting challenges to validate example.com"
      src="/images/howitworks_challenge.png"/>
 </div>
 
-Le logiciel agent complète l'un des défis fournis. Disons qu'il est capable d'accomplir la deuxième tâche ci-dessus: il crée un fichier sur un chemin spécifié sur le site `http://example.com`. L'agent signe également le `nonce` fourni avec sa clé privée. Une fois que l'agent a terminé ces étapes, il informe l'autorité de certification qu'il est prêt à terminer la validation.
+The agent software completes one of the provided sets of challenges.   Let's say it is able to accomplish the second task above: it creates a file on a specified path on the `http://example.com` site.  The agent also signs the provided nonce with its private key.  Once the agent has completed these steps, it notifies the CA that it's ready to complete validation.
 
-Ensuite, le travail de l'AC consiste à vérifier que les défis ont été relevés. L'autorité de certification vérifie la signature sur le `nonce` et tente de télécharger le fichier à partir du serveur Web et de s'assurer qu'il contient le contenu attendu.
+Then, it's the CA's job to check that the challenges have been satisfied.  The CA verifies the signature on the nonce, and it attempts to download the file from the web server and make sure it has the expected content.
 
 <div class="howitworks-figure">
-<img alt="Demander l'autorisation d'agir pour example.com"
+<img alt="Requesting authorization to act for example.com"
      src="/images/howitworks_authorization.png"/>
 </div>
 
-Si la signature sur le `nonce` est valide et que les défis sont validés, l'agent identifié par la clé publique est autorisé à effectuer la gestion des certificats pour `example.com`. Nous appelons la paire de clés que l'agent a utilisé une "paire de clés autorisée" pour `example.com`.
+If the signature over the nonce is valid, and the challenges check out, then the agent identified by the public key is authorized to do certificate management for `example.com`.  We call the key pair the agent used an "authorized key pair" for `example.com`.
 
-## Délivrance et révocation du certificat
 
-Une fois que l'agent a une paire de clés autorisée, la demande, le renouvellement et la révocation des certificats est simple : il suffit d'envoyer des messages de gestion de certificat et de les signer avec la paire de clés autorisée.
+## Certificate Issuance and Revocation
 
-Pour obtenir un certificat pour le domaine, l'agent construit une PKCS#10 [Certificate Signing Request](https://tools.ietf.org/html/rfc2986) qui demande à l'AC Let's&nbsp;Encrypt de délivrer un certificat pour `example.com` avec une clé publique spécifiée. Comme d'habitude, le CSR inclut une signature par la clé privée correspondant à la clé publique dans le CSR. L'agent signe également la totalité de la demande de signature de certificat avec la clé autorisée pour `example.com`, de sorte que l'AC Let's&nbsp;Encrypt sait qu'elle est autorisée.
+Once the agent has an authorized key pair, requesting, renewing, and revoking certificates is simple---just send certificate management messages and sign them with the authorized key pair.
 
-Lorsque l'AC Let's&nbsp;Encrypt reçoit la demande, elle vérifie les deux signatures. Si tout semble correct, il délivre un certificat pour `example.com` avec la clé publique du CSR et le renvoie à l'agent.
+To obtain a certificate for the domain, the agent constructs a PKCS#10 [Certificate Signing Request](https://tools.ietf.org/html/rfc2986) that asks the Let's&nbsp;Encrypt CA to issue a certificate for `example.com` with a specified public key.  As usual, the CSR includes a signature by the private key corresponding to the public key in the CSR.  The agent also signs the whole CSR with the authorized key for `example.com` so that the Let's&nbsp;Encrypt CA knows it's authorized.
+
+When the Let's&nbsp;Encrypt CA receives the request, it verifies both signatures.  If everything looks good, it issues a certificate for `example.com` with the public key from the CSR and returns it to the agent.
 
 <div class="howitworks-figure">
-<img alt="Demander un certificat pour example.com"
+<img alt="Requesting a certificate for example.com"
      src="/images/howitworks_certificate.png"/>
 </div>
 
-La révocation fonctionne de la même manière. L'agent signe une demande de révocation avec la paire de clés autorisée pour `example.com`, et l'AC Let's&nbsp;Encrypt vérifie que la demande est autorisée. Si c'est le cas, elle publie les informations de révocation dans les canaux de révocation normaux (OCSP), de sorte que les parties dépendantes, telles que les navigateurs, peuvent savoir qu'ils ne doivent pas accepter le certificat révoqué.
+Revocation works in a similar manner.  The agent signs a revocation request with the key pair authorized for `example.com`, and the Let's&nbsp;Encrypt CA verifies that the request is authorized.  If so, it publishes revocation information into the normal revocation channels (i.e. OCSP), so that relying parties such as browsers can know that they shouldn't accept the revoked certificate.
 
 <div class="howitworks-figure">
-<img alt="Demander la révocation d'un certificat de example.com"
+<img alt="Requesting revocation of a certificate for example.com"
      src="/images/howitworks_revocation.png"/>
 </div>
+
+
 

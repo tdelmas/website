@@ -1,96 +1,76 @@
 ---
-title: Chaîne de confiance
-linkTitle: Chaîne de confiance (Certificats Racines et Intermédiaires)
+title: Chain of Trust
+linkTitle: Chain of Trust (Root and Intermediate Certificates)
 slug: certificates
 top_graphic: 5
-lastmod: 2019-10-18
+lastmod: 2020-02-07
 ---
 
 {{< lastmod >}}
 
-# Certificats racine
+# Root Certificates
 
-Nos racines sont conservées en toute sécurité hors ligne. Nous émettons des certificats finaux signés par les intermédiaires de la section suivante.
+Our roots are kept safely offline. We issue end-entity certificates to subscribers from the intermediates in the next section.
 
-* Actif
-  * [ISRG Root X1 (auto-signé)](/certs/isrgrootx1.pem.txt)
+* Active
+  * [ISRG Root X1 (self-signed)](/certs/isrgrootx1.pem.txt)
 
-Nous avons mis en place des sites Web pour tester les certificats liés à nos racines.
+We've set up websites to test certificates chaining to our roots.
 
-* ISRG Root X1 Certificat valide
+* ISRG Root X1 Valid Certificate
   * [https://valid-isrgrootx1.letsencrypt.org/](https://valid-isrgrootx1.letsencrypt.org/)
-* ISRG Root X1 Certificat Révoqué
+* ISRG Root X1 Revoked Certificate
   * [https://revoked-isrgrootx1.letsencrypt.org/](https://revoked-isrgrootx1.letsencrypt.org/)
-* ISRG Root X1 Certificat Expiré
+* ISRG Root X1 Expired Certificate
   * [https://expired-isrgrootx1.letsencrypt.org/](https://expired-isrgrootx1.letsencrypt.org/)
 
-# Certificats Intermédiaires
+# Intermediate Certificates
 
-IdenTrust a aussi signé (signature croisée, *cross signed* en anglais) nos intermédiaires. Cela permet à nos certificats finaux d'être acceptés par tous les principaux navigateurs pendant que nous propageons notre propre racine.
+Under normal circumstances, certificates issued by Let’s Encrypt will come from “Let’s Encrypt Authority X3”. The other intermediate, “Let’s Encrypt Authority X4”, is reserved for disaster recovery and will only be used should we lose the ability to issue with “Let’s Encrypt Authority X3”. We do not use the X1 and X2 intermediates any more.
 
-Dans des circonstances normales, les certificats émis par Let's Encrypt proviendront de «Let's Encrypt Authority X3». L'autre intermédiaire, «Let's Encrypt Authority X4», est réservé à la reprise après sinistre et ne sera utilisé que si nous perdons la possibilité d'utiliser «Let's Encrypt Authority X3». Les intermédiaires X1 et X2 étaient notre première génération d'intermédiaires. Nous les avons remplacés par de nouveaux intermédiaires plus compatibles avec Windows XP.
+IdenTrust has cross-signed our intermediates for additional compatibility.
 
-* Actif
-  * [Let's Encrypt Authority X3 (Signé par IdenTrust)](/certs/lets-encrypt-x3-cross-signed.pem.txt)
-    * [Let's Encrypt Authority X3 (Signé par ISRG Root X1)](/certs/letsencryptauthorityx3.pem.txt)
-* Secours
-  * [Let's Encrypt Authority X4 (Signé par IdenTrust)](/certs/lets-encrypt-x4-cross-signed.pem.txt)
-    * [Let's Encrypt Authority X4 (Signé par ISRG Root X1)](/certs/letsencryptauthorityx4.pem.txt)
-* Retirés
-  * [Let's Encrypt Authority X2 (Signé par IdenTrust)](/certs/lets-encrypt-x2-cross-signed.pem.txt)
-    * [Let's Encrypt Authority X2 (Signé par ISRG Root X1)](/certs/letsencryptauthorityx2.pem.txt)
-  * [Let's Encrypt Authority X1 (Signé par IdenTrust)](/certs/lets-encrypt-x1-cross-signed.pem.txt)
-    * [Let's Encrypt Authority X1 (Signé par ISRG Root X1)](/certs/letsencryptauthorityx1.pem.txt)
+* Active
+  * [Let's Encrypt Authority X3 (IdenTrust cross-signed)](/certs/lets-encrypt-x3-cross-signed.pem.txt)
+    * [Let's Encrypt Authority X3 (Signed by ISRG Root X1)](/certs/letsencryptauthorityx3.pem.txt)
+* Backup
+  * [Let's Encrypt Authority X4 (IdenTrust cross-signed)](/certs/lets-encrypt-x4-cross-signed.pem.txt)
+    * [Let's Encrypt Authority X4 (Signed by ISRG Root X1)](/certs/letsencryptauthorityx4.pem.txt)
+* Retired
+  * [Let's Encrypt Authority X2 (IdenTrust cross-signed)](/certs/lets-encrypt-x2-cross-signed.pem.txt)
+    * [Let's Encrypt Authority X2 (Signed by ISRG Root X1)](/certs/letsencryptauthorityx2.pem.txt)
+  * [Let's Encrypt Authority X1 (IdenTrust cross-signed)](/certs/lets-encrypt-x1-cross-signed.pem.txt)
+    * [Let's Encrypt Authority X1 (Signed by ISRG Root X1)](/certs/letsencryptauthorityx1.pem.txt)
 
-# Signature croisée
+# Cross Signing
 
-Notre intermédiaire "Let's Encrypt Authority X3" représente une seule paire de clés public/privée.
-La clé privée de cette paire génère la signature pour tous les certificats finaux, c'est-à-dire les certificats que nous délivrons pour une utilisation sur votre serveur.
+Our intermediate “Let’s Encrypt Authority X3” represents a single public/private key pair. The private key of that pair generates the signature for all end-entity certificates (also known as leaf certificates), i.e. the certificates we issue for use on your server.
 
-Notre intermédiaire est signé par la racine ISRG X1. Cependant, puisque nous sommes une toute nouvelle
-autorité de certification, ISRG Root X1 n'est pas encore approuvé dans la plupart des navigateurs.
-Afin d'être reconnu immédiatement, notre intermédiaire est également signé par
-une autre autorité de certification, IdenTrust, dont la racine est déjà approuvée par 
-les principaux navigateurs. Plus précisément, IdenTrust a signé notre intermédiaire en utilisant leur certificat racine
-"DST Root CA X3" (maintenant appelé "TrustID X3 Root"). [Télécharger "TrustID X3 Root" sur identrust.com](https://www.identrust.com/support/downloads) (ou, de façon alternative, vous pouvez télécharger une copie ici : [.pem](/certs/trustid-x3-root.pem.txt), [.p7b](/certs/trustid-x3-root.p7b)).
+Our intermediate is signed by ISRG Root X1. ISRG's root is widely trusted at this point, but our intermediate is still cross-signed by IdenTrust's "DST Root CA X3" (now called "TrustID X3 Root") for additional client compatibility. The IdenTrust root has been around longer and thus has better compatibility with older devices and operating systems (e.g. Windows XP). [Download "TrustID X3 Root" on identrust.com](https://www.identrust.com/support/downloads) (or, alternatively, you can download a copy here: [.pem](/certs/trustid-x3-root.pem.txt), [.p7b](/certs/trustid-x3-root.p7b)).
 
-Cela signifie qu'il y a deux certificats disponibles qui représentent tous deux notre
-intermédiaire. L'un est signé par DST Root CA X3, et l'autre est signé par ISRG
-Racine X1. La façon la plus simple de les distinguer est de regarder leur champ "émetteur".
+Having a cross-signature means there are two sets of intermediate certificates available, both of which represent our intermediate. One is signed by DST Root CA X3, and the other is signed by ISRG Root X1. The easiest way to distinguish the two is by looking at their Issuer field.
 
-Lors de la configuration d'un serveur Web, l'opérateur du serveur configure non seulement le
-certificat final, mais aussi une liste d'intermédiaires pour aider les navigateurs à vérifier
-que le certificat d'entité finale possède une chaîne de confiance menant à une racine approuvée
-certificat. Presque tous les opérateurs de serveurs choisiront de servir une chaîne contenant
-le certificat intermédiaire avec le sujet "Let's Encrypt Authority X3" et
-ayant pour émetteur "DST Root CA X3." Le logiciel recommandé par Let's Encrypt, [Certbot](https://certbot.org), rendra
-la configuration transparente.
+When configuring a web server, the server operator configures not only the end-entity certificate, but also a list of intermediates to help browsers verify that the end-entity certificate has a trust chain leading to a trusted root certificate. Almost all server operators will choose to serve a chain including the intermediate certificate with Subject “Let’s Encrypt Authority X3” and Issuer “DST Root CA X3.” The recommended Let's Encrypt software, [Certbot](https://certbot.org), will make this configuration seamlessly.
 
+The following picture explains the relationships between our certificates visually:
 
-L'image suivante explique visuellement les relations entre nos certificats :
+<img src="/certs/isrg-keys.png" alt="ISRG Key relationship diagram" />
 
-<img src="/certs/isrg-keys.png" alt="Schéma des relations clés de l'ISRG">
+# OCSP Signing Certificate
 
-# Certificat de signature de l'OCSP
+This certificate is used to sign OCSP responses for the Let's Encrypt Authority intermediates, so that we don't need to bring the root key online in order to sign those responses. A copy of this certificate is included automatically in those OCSP responses, so Subscribers don't need to do anything with it. It is included here for informational purposes only.
 
-Ce certificat est utilisé pour signer les réponses OCSP pour les intermédiaires de l'autorité Let's Encrypt, de sorte que nous n'avons pas besoin d'avoir la clé racine en ligne afin de
-signer ces réponses. Une copie de ce certificat est automatiquement incluse dans
-ces réponses OCSP, donc les abonnés n'ont pas besoin de faire quoi que ce soit avec.
-Ceci est inclus uniquement à titre informatif.
-
-* [ISRG Root OCSP X1 (Signé par ISRG Root X1)](/certs/isrg-root-ocsp-x1.pem.txt)
+* [ISRG Root OCSP X1 (Signed by ISRG Root X1)](/certs/isrg-root-ocsp-x1.pem.txt)
 
 # Certificate Transparency
 
-Nous nous engageons à la transparence dans nos opérations et dans les certificats que nous
-émettons. Nous soumettons tous les certificats aux [Logs de Certificate Transparency](https://www.certificate-transparency.org/) au fur et à mesure que nous les émettons. Vous pouvez voir tous
-émis Let's Encrypt certificats via ces liens:
+We are dedicated to transparency in our operations and in the certificates we issue. We submit all certificates to [Certificate Transparency logs](https://www.certificate-transparency.org/) as we issue them. You can view all issued Let's Encrypt certificates via these links:
 
-* [Émis par Let's Encrypt Authority X1](https://crt.sh/?Identity=%25&iCAID=7395)
-* [Émis par Let's Encrypt Authority X3](https://crt.sh/?Identity=%25&iCAID=16418)
+* [Issued by Let's Encrypt Authority X1](https://crt.sh/?Identity=%25&iCAID=7395)
+* [Issued by Let's Encrypt Authority X3](https://crt.sh/?Identity=%25&iCAID=16418)
 
-# Plus d'informations
+# More Info
 
-Les clés privées de l'autorité de certification racine ISRG et des autorités de certification intermédiaires de Let's Encrypt sont stockées sur des modules de sécurité matériels (HSM), qui offrent un degré de protection élevé contre le vol de clés.
+The private keys for the ISRG root CA and the Let’s Encrypt intermediate CAs are stored on hardware security modules (HSMs), which provide a high degree of protection against the keys being stolen.
 
-Toutes les clés de l'ISRG sont actuellement des clés RSA. Nous {{<link "prévoyons de générer des clés ECDSA" "/upcoming-features" >}}.
+All ISRG keys are currently RSA keys. We are {{<link "planning to generate ECDSA keys" ">}}.

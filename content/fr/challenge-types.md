@@ -61,7 +61,7 @@ This challenge was defined in draft versions of ACME. It did a TLS handshake on 
 
 # TLS-ALPN-01
 
-This challenge was developed after TLS-SNI-01 became deprecated, and is being developed as [a separate standard](https://tools.ietf.org/html/draft-ietf-acme-tls-alpn-01). Like TLS-SNI-01, it is performed via TLS on port 443. However, it uses a custom ALPN protocol to ensure that only servers that are aware of this challenge type will respond to validation requests. This also allows validation requests for this challenge type to use an SNI field that matches the domain name being validated, making it more secure.
+This challenge was developed after TLS-SNI-01 became deprecated, and is being developed as [a separate standard](https://tools.ietf.org/html/rfc8737). Like TLS-SNI-01, it is performed via TLS on port 443. However, it uses a custom ALPN protocol to ensure that only servers that are aware of this challenge type will respond to validation requests. This also allows validation requests for this challenge type to use an SNI field that matches the domain name being validated, making it more secure.
 
 This challenge is not suitable for most people. It is best suited to authors of TLS-terminating reverse proxies that want to perform host-based validation like HTTP-01, but want to do it entirely at the TLS layer in order to separate concerns. Right now that mainly means large hosting providers, but mainstream web servers like Apache and Nginx could someday implement this (and [Caddy already does](https://caddy.community/t/caddy-supports-the-acme-tls-alpn-challenge/4860)).
 
